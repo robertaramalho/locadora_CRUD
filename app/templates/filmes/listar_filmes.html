@@ -25,5 +25,9 @@
         {% endfor %}
     </tbody>
 </table>
-<a href="{{ url_for('novo_filme') }}">Novo Filme</a>
+<div class="actions-container">
+<a href="{{ url_for('novo_filme') }}" class="action-btn primary">Novo Filme</a>
+<br>
+<a href="{{ url_for('listar_locacoes') }}" class="action-btn secondary">Ver locações</a>
+</div>
 {% endblock %}

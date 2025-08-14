@@ -65,14 +65,14 @@ class LocacaoRepository:
         cursor.execute("DELETE FROM locacao WHERE id = ?", (id,))
         db.commit()
         
-    def get_locacoes_by_filme_id(self, id):
+    def get_locacoes_by_filme_id(self, id_filme):
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("""SELECT f.titulo 
-                          FROM locacao l 
-                          JOIN filme f ON l.id_filme = f.id 
-                          WHERE l.id = ?""", (id,))
-        row = cursor.fetchone()
-        if row:
-            return row[0]
-        return None
+        cursor.execute("""
+            SELECT f.titulo
+            FROM locacao l
+            JOIN filme f ON l.id_filme = f.id
+            WHERE l.id_filme = ?
+        """, (id_filme,))
+        rows = cursor.fetchall()
+        return [row[0] for row in rows] if rows else []

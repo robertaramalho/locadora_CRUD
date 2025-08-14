@@ -18,4 +18,10 @@
     <br>
     <button type="submit">{% if filme %}Atualizar Filme{% else %}Criar Filme{% endif %}</button>
 </form>
+<div class="actions-container">
+<a href="{{ url_for('listar_filmes') }}">Voltar para a lista de filmes</a>
+</div>
 {% endblock %}
+
+
+

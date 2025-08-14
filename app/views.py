@@ -11,7 +11,7 @@ filme_service = FilmeService()
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    return redirect(url_for('listar_locacoes'))
 
 @app.route('/locacoes')
 def listar_locacoes():
@@ -49,9 +49,9 @@ def editar_locacao(id):
         return redirect(url_for('listar_locacoes'))
     
     filmes = filme_service.get_all_filmes()
-    return render_template('locacoes/editar_locacao.html', locacao=locacao, filmes=filmes)
+    return render_template('locacoes/nova_locacao.html', locacao=locacao, filmes=filmes)
 
-@app.route('/locacoes/excluir/<int:id>', methods=['POST'])
+@app.route('/locacoes/excluir/<int:id>')
 def excluir_locacao(id):
     locacao_service.delete_locacao(id)
     return redirect(url_for('listar_locacoes'))
@@ -90,7 +90,7 @@ def editar_filme(id):
     
     return render_template('filmes/editar_filme.html', filme=filme)
 
-@app.route('/filmes/excluir/<int:id>', methods=['POST'])
+@app.route('/filmes/excluir/<int:id>')
 def excluir_filme(id):
     filme_service.delete_filme(id)
     return redirect(url_for('listar_filmes'))

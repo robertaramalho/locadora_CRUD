@@ -14,7 +14,7 @@
     <select id="id_filme" name="id_filme" required>
         <option value="">Escolha um filme</option>
         {% for filme in filmes %}
-            <option value="{{ filme.get_id() }}" {% if locacao and locacao.get_filme_id() == filme.get_id() %}selected{% endif %}>
+            <option value="{{ filme.get_id() }}" {% if locacao and locacao.get_id_filme() == filme.get_id() %}selected{% endif %}>
                 {{ filme.get_titulo() }}
             </option>
         {% endfor %}
@@ -28,7 +28,14 @@
     <br>
     <button type="submit">{% if locacao %}Atualizar Locação{% else %}Criar Locação{% endif %}</button>
 </form>
+
+<div class="actions-container">
+<a href="{{ url_for('listar_locacoes') }}">Voltar para a lista de locações</a>
+</div>
 {% endblock %}
+
+
+
 
 
         

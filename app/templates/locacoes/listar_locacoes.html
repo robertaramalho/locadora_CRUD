@@ -26,6 +26,13 @@
             </td>
         </tr>
         {% endfor %}
+    </tbody>
 </table>
-<a href="{{ url_for('nova_locacao') }}">Nova Locação</a>
+
+<div class="actions-container">
+<a href="{{ url_for('nova_locacao') }}" class="action-btn primary">Nova Locação</a>
+<br>
+<a href="{{ url_for('listar_filmes') }}" class="action-btn secondary">Ver Filmes disponíveis</a>
+</div>
+
 {% endblock %}
