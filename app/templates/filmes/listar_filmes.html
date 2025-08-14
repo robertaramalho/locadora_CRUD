@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Lista de Filmes</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Gênero</th>
+            <th>Ano de Lançamento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for filme in filmes %}
+        <tr>
+            <td>{{ filme.get_titulo() }}</td>
+            <td>{{ filme.get_genero() }}</td>
+            <td>{{ filme.get_ano_lancamento() }}</td>
+            <td>
+                <a href="{{ url_for('editar_filme', id=filme.get_id()) }}">Editar</a>
+                <a href="{{ url_for('excluir_filme', id=filme.get_id()) }}">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('novo_filme') }}">Novo Filme</a>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Formulário de Locadora</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Filme</th>
+            <th>Data de Locação</th>
+            <th>Data de Devolução</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for locacao in locacoes %}
+        <tr>
+            <td>{{ locacao.get_cliente_nome() }}</td>
+            <td>{{ locacao.filme_titulo }}</td>
+            <td>{{ locacao.get_data_locacao() }}</td>
+            <td>{{ locacao.get_data_devolucao() }}</td>
+            <td>
+                <a href="{{ url_for('editar_locacao', id=locacao.get_id()) }}">Editar</a>
+                <a href="{{ url_for('excluir_locacao', id=locacao.get_id()) }}">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+</table>
+<a href="{{ url_for('nova_locacao') }}">Nova Locação</a>
+{% endblock %}

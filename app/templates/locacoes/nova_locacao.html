@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+<h1>{% if locacao %}Criar Locação {% else %}Editar Locação {% endif %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <label for="cliente">Cliente:</label>
+    <input type="text" id="cliente_nome" name="cliente_nome" value="{{ locacao.get_cliente_nome() if locacao else '' }}" required> 
+    <br>
+    <label for="filme">Filme:</label>
+    <select id="id_filme" name="id_filme" required>
+        <option value="">Escolha um filme</option>
+        {% for filme in filmes %}
+            <option value="{{ filme.get_id() }}" {% if locacao and locacao.get_filme_id() == filme.get_id() %}selected{% endif %}>
+                {{ filme.get_titulo() }}
+            </option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="data_locacao">Data de Locação:</label>
+    <input type="date" id="data_locacao" name="data_locacao" value="{{ locacao.get_data_locacao() if locacao else '' }}" required>
+    <br>
+    <label for="data_devolucao">Data de Devolução:</label>
+    <input type="date" id="data_devolucao" name="data_devolucao" value="{{ locacao.get_data_devolucao() if locacao else '' }}" required>
+    <br>
+    <button type="submit">{% if locacao %}Atualizar Locação{% else %}Criar Locação{% endif %}</button>
+</form>
+{% endblock %}
+
+
+        
